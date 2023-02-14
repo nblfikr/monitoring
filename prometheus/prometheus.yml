@@ -1,0 +1,26 @@
+global:
+  scrape_interval: 15s
+  # evaluation_interval: 30s
+
+  # The labels to add to any time series or alerts when communicating with
+  # external systems (federation, remote storage, Alertmanager).
+  # external_labels:
+  #   [ <labelname>: <labelvalue> ... ]
+
+# A list of scrape configurations.
+scrape_configs:
+  - job_name: prometheus_job_name
+    static_configs:
+      - targets:
+        - localhost:9090
+        labels:
+          node: docker_prom
+          job: prometheus_job_label
+
+  - job_name: node_exporter
+    static_configs:
+      - targets:
+        - 192.168.118.204:9100
+        labels:
+          node: vm_node_ex
+          job: node_ex_job_label
